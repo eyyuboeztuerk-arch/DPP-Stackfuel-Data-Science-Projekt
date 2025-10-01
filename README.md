@@ -1,31 +1,22 @@
-# 📋 Template-Anleitung
+# Portfolio Projekt: 🫀 Cardiovascular Disease Prediction 🚀
 
-> **Für Kursteilnehmer*innen:** Diese Sektion nach dem Setup deines Projekts löschen!
+Vorhersage des Risikos kardiovaskulärer Erkrankungen anhand klinischer und demografischer Merkmale – mit Fokus auf klinische Interpretierbarkeit, Validierung und Bias-Analyse.
 
-## So verwenden Sie dieses Template:
-Dieses Template hilft dir, dein Data Science Projekt effizient zu organisieren und zu dokumentieren. Es bietet eine gängige Struktur, um deine Arbeit zu planen, durchzuführen und zu präsentieren. Templates können in GitHub über den Button **"Use this template"** in der oberen rechten Ecke in ein eigenes Repository überführt werden. Nutze diese Vorlage als Inspiration und passe sie an dein Projekt an! 
-
-Neben einer grundlegenden Ordnerstruktur für deine Dateien und Notebooks, enthält dieses Template unter `.github\ISSUE_TEMPLATE` einige Vorlagen für GitHub Issues, die dir helfen, deine Aufgaben zu organisieren und den Fortschritt deines Projekts zu verfolgen.
-
-Lies dir die Datei `PROJECT_SETUP.md` durch, um mehr über die Nutzung dieses Templates zu erfahren.
-
-Für dein Projekt kannst du die folgenden Abschnitte in der `README.md` Datei anpassen, um dein Projekt zu beschreiben und zu präsentieren. Lösche anschließend diese Anleitung.
-
-
-# [DEIN PROJEKTTITEL HIER] 🚀
-
-> Eine kurze, prägnante Beschreibung deines Data Science Projekts in 1-2 Sätzen.
 
 ## 📊 Projektübersicht
 
 **Problemstellung:** 
-<!-- Beschreibe das Problem, das du lösen möchtest -->
+Kardiovaskuläre Erkrankungen (CVD) gehören weltweit zu den häufigsten Todesursachen. Eine frühzeitige Risikoidentifikation kann präventive Maßnahmen ermöglichen und die Patientenversorgung verbessern. Dieses Projekt nutzt Machine Learning, um CVD-Risiken auf Basis klinischer Daten vorherzusagen.
 
 **Ziel:** 
-<!-- Was ist das Hauptziel deines Projekts? -->
+Entwicklung eines validen, kalibrierten Klassifikationsmodells zur Vorhersage von kardiovaskulärem Risiko. Schwerpunkt liegt auf **klinischer Interpretierbarkeit, Feature Importance und Bias-Analyse** um sowohl Data-Science-Kompetenz als auch medizinische Fachkenntnis zu demonstrieren.
 
-**Methoden:** 
-<!-- Welche Techniken/Algorithmen verwendest du? -->
+**Methoden:**
+Geplant sind folgende Methoden: 
+• Explorative Datenanalyse (EDA) mit medizinischem Fokus
+• Feature Engineering (BMI-Kategorien, Blutdruckgruppen)
+• Klassifikationsmodelle: Logistische Regression, Random Forest, Gradient Boosting (XGBoost/LightGBM)
+• Evaluation: ROC-AUC, PR-AUC, Calibration Plots, SHAP-basierte Explainability
 
 ## 🎯 Key Findings
 
@@ -51,24 +42,31 @@ Für dein Projekt kannst du die folgenden Abschnitte in der `README.md` Datei an
 ## 🔧 Verwendete Technologien
 
 **Programmiersprachen:**
-<!-- z.B. Python, R, SQL -->
+• Python 3.10+
 
 **Libraries & Frameworks:**
 <!-- z.B. pandas, scikit-learn, matplotlib, etc. -->
 
 **Tools:**
-<!-- z.B. Jupyter, Git, Docker, etc. -->
+• Jupyter Notebook / JupyterLab
+• Git & GitHub (Versionskontrolle)
+• UV (Python Paketmanager)
+• Visual Studio Code
 
 ## 📊 Daten
 
 **Datenquelle:** 
-<!-- Woher kommen deine Daten? -->
+[Kaggle (Cardiovascular Disease dataset)](https://www.kaggle.com/datasets/sulianova/cardiovascular-disease-dataset)
 
 **Datensatz-Größe:** 
-<!-- Anzahl Zeilen/Spalten, Dateigröße -->
+• **70.000 Beobachtungen** (Patient:innen)
+• **11 Features**, 1 Zielvariable
 
 **Wichtige Features:** 
-<!-- Beschreibung der wichtigsten Variablen -->
+• **Demografisch**: Alter, Geschlecht, Größe, Gewicht
+• **Klinisch**: Systolischer/Diastolischer Blutdruck (ap_hi, ap_lo), Cholesterin, Glukose
+• **Lifestyle**: Rauchen, Alkoholkonsum, körperliche Aktivität
+• **Zielvariable**: cardio (0 = kein Risiko, 1 = erhöhtes CVD-Risiko)
 
 ## 🤖 Methodik
 
