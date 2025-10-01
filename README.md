@@ -1,21 +1,21 @@
-# Portfolio Projekt: 🫀 Cardiovascular Disease Prediction 🚀
+# Portfolio Projekt: 🫀 Cardiovascular Disease Prediction
 
 Vorhersage des Risikos kardiovaskulärer Erkrankungen anhand klinischer und demografischer Merkmale – mit Fokus auf klinische Interpretierbarkeit, Validierung und Bias-Analyse.
 
 
 ## 📊 Projektübersicht
 
-**Problemstellung:** 
+**Problemstellung:**  
 Kardiovaskuläre Erkrankungen (CVD) gehören weltweit zu den häufigsten Todesursachen. Eine frühzeitige Risikoidentifikation kann präventive Maßnahmen ermöglichen und die Patientenversorgung verbessern. Dieses Projekt nutzt Machine Learning, um CVD-Risiken auf Basis klinischer Daten vorherzusagen.
 
-**Ziel:** 
+**Ziel:**  
 Entwicklung eines validen, kalibrierten Klassifikationsmodells zur Vorhersage von kardiovaskulärem Risiko. Schwerpunkt liegt auf **klinischer Interpretierbarkeit, Feature Importance und Bias-Analyse** um sowohl Data-Science-Kompetenz als auch medizinische Fachkenntnis zu demonstrieren.
 
-**Methoden:**
-Geplant sind folgende Methoden: 
-• Explorative Datenanalyse (EDA) mit medizinischem Fokus
-• Feature Engineering (BMI-Kategorien, Blutdruckgruppen)
-• Klassifikationsmodelle: Logistische Regression, Random Forest, Gradient Boosting (XGBoost/LightGBM)
+**Methoden:**  
+Geplant sind folgende Methoden:  
+• Explorative Datenanalyse (EDA) mit medizinischem Fokus  
+• Feature Engineering (BMI-Kategorien, Blutdruckgruppen)  
+• Klassifikationsmodelle: Logistische Regression, Random Forest, Gradient Boosting (XGBoost/LightGBM)  
 • Evaluation: ROC-AUC, PR-AUC, Calibration Plots, SHAP-basierte Explainability
 
 ## 🎯 Key Findings
@@ -41,32 +41,34 @@ Geplant sind folgende Methoden:
 
 ## 🔧 Verwendete Technologien
 
-**Programmiersprachen:**
+**Programmiersprachen:**  
 • Python 3.10+
 
-**Libraries & Frameworks:**
-<!-- z.B. pandas, scikit-learn, matplotlib, etc. -->
+**Libraries & Frameworks:**  
+• **Data Processing**: pandas, numpy  
+• **Visualisierung**: matplotlib, seaborn  
+• **Machine Learning**: scikit-learn
 
-**Tools:**
-• Jupyter Notebook / JupyterLab
-• Git & GitHub (Versionskontrolle)
-• UV (Python Paketmanager)
+**Tools:**  
+• Jupyter Notebook / JupyterLab  
+• Git & GitHub (Versionskontrolle)  
+• UV (Python Paketmanager)  
 • Visual Studio Code
 
 ## 📊 Daten
 
-**Datenquelle:** 
+**Datenquelle:**  
 [Kaggle (Cardiovascular Disease dataset)](https://www.kaggle.com/datasets/sulianova/cardiovascular-disease-dataset)
 
-**Datensatz-Größe:** 
-• **70.000 Beobachtungen** (Patient:innen)
+**Datensatz-Größe:**  
+• **70.000 Beobachtungen** (Patient:innen)  
 • **11 Features**, 1 Zielvariable
 
-**Wichtige Features:** 
-• **Demografisch**: Alter, Geschlecht, Größe, Gewicht
-• **Klinisch**: Systolischer/Diastolischer Blutdruck (ap_hi, ap_lo), Cholesterin, Glukose
-• **Lifestyle**: Rauchen, Alkoholkonsum, körperliche Aktivität
-• **Zielvariable**: cardio (0 = kein Risiko, 1 = erhöhtes CVD-Risiko)
+**Wichtige Features:**  
+• **Demografisch**: Alter, Geschlecht, Größe, Gewicht  
+• **Klinisch**: Systolischer/Diastolischer Blutdruck (*ap_hi*, *ap_lo*), Cholesterin, Glukose  
+• **Lifestyle**: Rauchen, Alkoholkonsum, körperliche Aktivität  
+• **Zielvariable**: *cardio* (0 = kein Risiko, 1 = erhöhtes CVD-Risiko)  
 
 ## 🤖 Methodik
 
@@ -92,8 +94,8 @@ Geplant sind folgende Methoden:
 ### Setup
 ```bash
 # Repository klonen
-git clone [DEIN-REPO-LINK]
-cd [REPO-NAME]
+git clone https://github.com/eyyuboeztuerk-arch/DPP-Stackfuel-Data-Science-Projekt.git
+cd DPP-Stackfuel-Data-Science-Projekt
 
 # Dependencies installieren
 uv sync
@@ -111,14 +113,15 @@ uv sync
 
 ## 🎓 Über dieses Projekt
 
-**Kontext:** 
-<!-- Im Rahmen welches Kurses/welcher Veranstaltung? -->
+**Kontext:**  
+Dieses Projekt entsteht im Rahmen des **StackFuel Portfolio Projekt Kurses**. Mit diesem Projekt demonstriere ich den Übergang meiner Kenntnisse als **Biostatistiker in klinischen Studien** zu **angewandtem Data Science (im Gesundheitswesen)**.
 
-**Zeitraum:** 
-<!-- Wann hast du das Projekt durchgeführt? -->
+**Zeitraum:**  
+29.09.2025 - 17.10.2025
 
-**Autor:** 
-<!-- Dein Name -->
+**Autor:**  
+Eyyub Öztürk  
+  Biostatistiker (M.Sc.) mit mehrjähriger Erfahrung in klinischen Studien, nun mit zusätzlicher Spezialisierung auf Data Science
 
 ## 📞 Kontakt
 
