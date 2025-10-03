@@ -1,20 +1,20 @@
-# Portfolio Projekt: 🫀 Cardiovascular Disease Prediction
+# Portfolio Projekt: 🫀 Cardiovascular Disease Risk Prediction
 
-Vorhersage des Risikos kardiovaskulärer Erkrankungen anhand klinischer und demografischer Merkmale – mit Fokus auf klinische Interpretierbarkeit, Validierung und Bias-Analyse.
+Vorhersage des Risikos kardiovaskulärer Erkrankungen anhand von Lifestyle-, Gesundheits- und demografischen Merkmalen mit Fokus auf klinische Interpretierbarkeit, Validierung und Bias-Analyse.
 
 
 ## 📊 Projektübersicht
 
 **Problemstellung:**  
-Kardiovaskuläre Erkrankungen (CVD) gehören weltweit zu den häufigsten Todesursachen. Eine frühzeitige Risikoidentifikation kann präventive Maßnahmen ermöglichen und die Patientenversorgung verbessern. Dieses Projekt nutzt Machine Learning, um CVD-Risiken auf Basis klinischer Daten vorherzusagen.
+Kardiovaskuläre Erkrankungen (CVD) gehören weltweit zu den häufigsten Todesursachen. Eine frühzeitige Risikoidentifikation kann präventive Maßnahmen ermöglichen und die Patientenversorgung verbessern. Dieses Projekt nutzt Machine Learning, um CVD-Risiken auf Basis von Gesundheits-, Lifestyle- und Ernährungsdaten vorherzusagen.
 
 **Ziel:**  
-Entwicklung eines validen, kalibrierten Klassifikationsmodells zur Vorhersage von kardiovaskulärem Risiko. Schwerpunkt liegt auf **klinischer Interpretierbarkeit, Feature Importance und Bias-Analyse** um sowohl Data-Science-Kompetenz als auch medizinische Fachkenntnis zu demonstrieren.
+Entwicklung eines validen, kalibrierten Klassifikationsmodells zur Vorhersage von kardiovaskulärem Risiko. Schwerpunkt liegt auf **klinischer Interpretierbarkeit, Feature Importance und Bias-Analyse** um sowohl Data-Science-Kompetenz als auch biostatistische Fachkenntnis zu demonstrieren.
 
 **Methoden:**  
 Geplant sind folgende Methoden:  
 • Explorative Datenanalyse (EDA) mit medizinischem Fokus  
-• Feature Engineering (BMI-Kategorien, Blutdruckgruppen)  
+• Feature Engineering (BMI-Kategorien, Gesundheitsindizes, Lifestyle-Scores)  
 • Klassifikationsmodelle: Logistische Regression, Random Forest, Gradient Boosting (XGBoost/LightGBM)  
 • Evaluation: ROC-AUC, PR-AUC, Calibration Plots, SHAP-basierte Explainability
 
@@ -58,19 +58,39 @@ Geplant sind folgende Methoden:
 ## 📊 Daten
 
 **Datenquelle:**  
-[Kaggle (Cardiovascular Disease dataset)](https://www.kaggle.com/datasets/sulianova/cardiovascular-disease-dataset)
+[Kaggle – Cardiovascular Diseases Risk Prediction Dataset](https://www.kaggle.com/datasets/alphiree/cardiovascular-diseases-risk-prediction-dataset)  
+**Originaldatenquelle:** CDC Behavioral Risk Factor Surveillance System (BRFSS) 2021
+
+**Lizenz:**  
+Public Domain (CDC-Daten)
 
 **Datensatz-Größe:**  
-• **70.000 Beobachtungen** (Patient:innen)  
-• **11 Features**, 1 Zielvariable
+• **308.854 Beobachtungen** (Befragte aus den USA)
+• **19 Features**, 1 Zielvariable
 
 **Wichtige Features:**  
-• **Demografisch**: Alter, Geschlecht, Größe, Gewicht  
-• **Klinisch**: Systolischer/Diastolischer Blutdruck (*ap_hi*, *ap_lo*), Cholesterin, Glukose  
-• **Lifestyle**: Rauchen, Alkoholkonsum, körperliche Aktivität  
-• **Zielvariable**: *cardio* (0 = kein Risiko, 1 = erhöhtes CVD-Risiko)  
+• **Demografisch:** Alter (Kategorien: 18-24 bis 80+), Geschlecht, Größe, Gewicht, BMI  
+• **Gesundheitsstatus:** Allgemeiner Gesundheitszustand, letzte Vorsorgeuntersuchung  
+• **Chronische Erkrankungen:** Diabetes, Arthritis, Hautkrebs, andere Krebsarten, Depression  
+• **Lifestyle-Faktoren:** Rauchen, Alkoholkonsum, körperliche Aktivität  
+• **Ernährung:** Obst-, Gemüse- und Kartoffelkonsum (Portionen/Monat)  
+• **Zielvariable:** `Heart_Disease` (0 = keine Herzerkrankung, 1 = Herzerkrankung diagnostiziert)
+
+**Datenqualität:**  
+• Offizielle CDC-Erhebung mit standardisiertem Erhebungsprotokoll  
+• Repräsentative Stichprobe der US-Bevölkerung  
+• Keine fehlenden Werte im bereinigten Datensatz  
+• Umfassende Dokumentation verfügbar
 
 ## 🤖 Methodik
+
+### 🔬 Hypothesen
+
+1. **Alter und chronische Erkrankungen** sind die dominanten Risikofaktoren für Herzerkrankungen
+2. **Lifestyle-Faktoren** (Rauchen, Bewegung, Ernährung) tragen signifikant zur Modellleistung bei
+3. **BMI und allgemeiner Gesundheitszustand** zeigen starke Korrelation mit CVD-Risiko
+4. Lineare Modelle (Logistische Regression) sind interpretierbarer, aber weniger performant als Ensemble-Methoden (Random Forest, XGBoost)
+5. **Ernährungsmuster** (Obst/Gemüse vs. frittierte Kartoffeln) haben messbaren Einfluss auf CVD-Risiko
 
 ### Data Preprocessing
 <!-- Kurze Beschreibung deiner Datenbereinigung -->
