@@ -1,22 +1,29 @@
-# Portfolio Projekt: 🫀 Cardiovascular Disease Risk Prediction
+# Portfolio Projekt: Diabetes Health Indicators: Multi-Class Risk Prediction
 
-Vorhersage des Risikos kardiovaskulärer Erkrankungen anhand von Lifestyle-, Gesundheits- und demografischen Merkmalen mit Fokus auf klinische Interpretierbarkeit, Validierung und Bias-Analyse.
+Dieses Projekt befasst sich mit der Vorhersage des Diabetes-Status (0/1/2) anhand von Gesundheits-, Lifestyle- und demografischen Merkmalen mit Fokus auf klinische Interpretierbarkeit, Validierung und Bias-Analyse.
 
 
 ## 📊 Projektübersicht
 
 **Problemstellung:**  
-Kardiovaskuläre Erkrankungen (CVD) gehören weltweit zu den häufigsten Todesursachen. Eine frühzeitige Risikoidentifikation kann präventive Maßnahmen ermöglichen und die Patientenversorgung verbessern. Dieses Projekt nutzt Machine Learning, um CVD-Risiken auf Basis von Gesundheits-, Lifestyle- und Ernährungsdaten vorherzusagen.
+Diabetes mellitus ist eine der häufigsten chronischen Erkrankungen weltweit. Eine frühzeitige und differenzierte Risikoidentifikation (kein Diabetes vs. Prädiabetes vs. Diabetes) ermöglicht gezielte Prävention und Versorgung. Dieses Projekt nutzt den Kaggle-Datensatz „Diabetes Health Indicators“ (BRFSS 2015) zur Entwicklung prädiktiver Modelle für den dreistufigen Diabetes-Status.
 
 **Ziel:**  
-Entwicklung eines validen, kalibrierten Klassifikationsmodells zur Vorhersage von kardiovaskulärem Risiko. Schwerpunkt liegt auf **klinischer Interpretierbarkeit, Feature Importance und Bias-Analyse** um sowohl Data-Science-Kompetenz als auch biostatistische Fachkenntnis zu demonstrieren.
+Entwicklung valider, kalibrierter Multiklassen-Modelle zur Vorhersage des Diabetes-Status mit drei Ausprägungen:  
+  
+• 0 = kein Diabetes  
+• 1 = Prädiabetes  
+• 2 = Diabetes  
+  
+Schwerpunkt: klinische Interpretierbarkeit, Feature Importance, Kalibrierung und Bias-/Subgruppen-Analysen.
 
 **Methoden:**  
 Geplant sind folgende Methoden:  
-• Explorative Datenanalyse (EDA) mit medizinischem Fokus  
-• Feature Engineering (BMI-Kategorien, Gesundheitsindizes, Lifestyle-Scores)  
-• Klassifikationsmodelle: Logistische Regression, Random Forest, Gradient Boosting (XGBoost/LightGBM)  
-• Evaluation: ROC-AUC, PR-AUC, Calibration Plots, SHAP-basierte Explainability
+• Explorative Datenanalyse (EDA) mit medizinischem Fokus
+• Feature Engineering (BMI-Kategorien, Lifestyle-Score)
+• Multiklassen-Klassifikation: Logistische Regression, Random Forest
+• Evaluation: ROC-AUC (One-vs-Rest), PR-AUC je Klasse, Macro-/Weighted-F1
+• Subgruppen-/Bias-Analyse (z. B. Alter, Geschlecht)
 
 ## 🎯 Key Findings
 
@@ -58,39 +65,36 @@ Geplant sind folgende Methoden:
 ## 📊 Daten
 
 **Datenquelle:**  
-[Kaggle – Cardiovascular Diseases Risk Prediction Dataset](https://www.kaggle.com/datasets/alphiree/cardiovascular-diseases-risk-prediction-dataset)  
-**Originaldatenquelle:** CDC Behavioral Risk Factor Surveillance System (BRFSS) 2021
+Kaggle – Diabetes Health Indicators Dataset (Alex Teboul), BRFSS 2015.
+Verwendete Datei: diabetes_012_health_indicators_BRFSS2015.csv
+URL: https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset?select=diabetes_012_health_indicators_BRFSS2015.csv
 
 **Lizenz:**  
-Public Domain (CDC-Daten)
+Public Domain (CDC-Daten). Hinweise auf Kaggle/CDC beachten.
 
 **Datensatz-Größe:**  
-• **308.854 Beobachtungen** (Befragte aus den USA)
-• **19 Features**, 1 Zielvariable
+• **254.000 Beobachtungen** (BRFSS-Stichprobe)
+• **21 Features**, 1 Zielvariable
+• Zielvariable: Diabetes_012 mit drei Ausprägungen (0/1/2)
 
 **Wichtige Features:**  
-• **Demografisch:** Alter (Kategorien: 18-24 bis 80+), Geschlecht, Größe, Gewicht, BMI  
-• **Gesundheitsstatus:** Allgemeiner Gesundheitszustand, letzte Vorsorgeuntersuchung  
-• **Chronische Erkrankungen:** Diabetes, Arthritis, Hautkrebs, andere Krebsarten, Depression  
-• **Lifestyle-Faktoren:** Rauchen, Alkoholkonsum, körperliche Aktivität  
-• **Ernährung:** Obst-, Gemüse- und Kartoffelkonsum (Portionen/Monat)  
-• **Zielvariable:** `Heart_Disease` (0 = keine Herzerkrankung, 1 = Herzerkrankung diagnostiziert)
+• Demografisch: Alter (kategorisiert), Geschlecht, BMI
+• Gesundheitsstatus/Komorbiditäten: Allgemeiner Gesundheitszustand, Hypertonie-/Cholesterin-Indikatoren, Depression, Arthritis, Krebs
+• Lifestyle: Rauchen, Alkoholkonsum, körperliche Aktivität
+• Zielvariable: Diabetes_012 (0 = kein Diabetes, 1 = Prädiabetes, 2 = Diabetes)
 
 **Datenqualität:**  
-• Offizielle CDC-Erhebung mit standardisiertem Erhebungsprotokoll  
-• Repräsentative Stichprobe der US-Bevölkerung  
-• Keine fehlenden Werte im bereinigten Datensatz  
-• Umfassende Dokumentation verfügbar
+• Offizielle CDC-Erhebung (standardisierte Telefonumfrage)
+• In diesem Kaggle-Release i. d. R. bereinigt; fehlende Werte sind selten bzw. bereits behandelt
+• Details siehe Kaggle-Beschreibung und CDC-Codebooks
 
 ## 🤖 Methodik
 
 ### 🔬 Hypothesen
 
-1. **Alter und chronische Erkrankungen** sind die dominanten Risikofaktoren für Herzerkrankungen
-2. **Lifestyle-Faktoren** (Rauchen, Bewegung, Ernährung) tragen signifikant zur Modellleistung bei
-3. **BMI und allgemeiner Gesundheitszustand** zeigen starke Korrelation mit CVD-Risiko
-4. Lineare Modelle (Logistische Regression) sind interpretierbarer, aber weniger performant als Ensemble-Methoden (Random Forest, XGBoost)
-5. **Ernährungsmuster** (Obst/Gemüse vs. frittierte Kartoffeln) haben messbaren Einfluss auf CVD-Risiko
+• Alter, BMI und chronische Erkrankungen sind dominante Risikofaktoren; Lifestyle-Faktoren tragen substanziell zur Diskrimination zwischen 0/1/2 bei.
+• Logistische Regression (Multinomial) ist interpretierbar; Gradient Boosting erreicht häufig bessere Macro-F1/PR-AUC.
+• Kalibrierung pro Klasse ist entscheidend, insbesondere zur Trennung 0 vs. 1 (Prädiabetes).
 
 ### Data Preprocessing
 <!-- Kurze Beschreibung deiner Datenbereinigung -->
@@ -141,7 +145,7 @@ Dieses Projekt entsteht im Rahmen des **StackFuel Portfolio Projekt Kurses**. Mi
 
 **Autor:**  
 Eyyub Öztürk  
-  Biostatistiker (M.Sc.) mit mehrjähriger Erfahrung in klinischen Studien, nun mit zusätzlicher Spezialisierung auf Data Science
+  *Biostatistiker (M.Sc.) mit mehrjähriger Erfahrung in klinischen Studien, nun mit zusätzlicher Spezialisierung auf Data Science*
 
 ## 📞 Kontakt
 
