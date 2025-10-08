@@ -1,29 +1,23 @@
-# Portfolio Projekt: Diabetes Health Indicators: Multi-Class Risk Prediction
+# Portfolio Projekt: Diabetes Health Indicators: Binäre Klassifikation des Diabetesrisikos
 
-Dieses Projekt befasst sich mit der Vorhersage des Diabetes-Status (0/1/2) anhand von Gesundheits-, Lifestyle- und demografischen Merkmalen mit Fokus auf klinische Interpretierbarkeit, Validierung und Bias-Analyse.
+Dieses Projekt befasst sich mit der Vorhersage des Diabetes-Status anhand von Gesundheits-, Lifestyle- und demografischen Merkmalen, mit Fokus auf klinische Interpretierbarkeit, valide Evaluation und Bias-Analyse.
 
 
 ## 📊 Projektübersicht
 
 **Problemstellung:**  
-Diabetes mellitus ist eine der häufigsten chronischen Erkrankungen weltweit. Eine frühzeitige und differenzierte Risikoidentifikation (kein Diabetes vs. Prädiabetes vs. Diabetes) ermöglicht gezielte Prävention und Versorgung. Dieses Projekt nutzt den Kaggle-Datensatz „Diabetes Health Indicators“ (BRFSS 2015) zur Entwicklung prädiktiver Modelle für den dreistufigen Diabetes-Status.
+Diabetes mellitus ist eine der häufigsten chronischen Erkrankungen weltweit. Eine frühzeitige Risikoidentifikation (kein Diabetes vs. Prädiabetes/Diabetes) ermöglicht gezielte Prävention und Versorgung. Dieses Projekt nutzt den Kaggle-Datensatz „Diabetes Health Indicators (Binary)“ (BRFSS 2015), um prädiktive Modelle für den binären Diabetes-Status zu entwickeln.
 
 **Ziel:**  
-Entwicklung valider, kalibrierter Multiklassen-Modelle zur Vorhersage des Diabetes-Status mit drei Ausprägungen:  
-  
-• 0 = kein Diabetes  
-• 1 = Prädiabetes  
-• 2 = Diabetes  
-  
-Schwerpunkt: klinische Interpretierbarkeit, Feature Importance, Kalibrierung und Bias-/Subgruppen-Analysen.
+Dieses Projekt entwickelt ein binäres Klassifikationsmodell zur Vorhersage des Diabetesrisikos. Dabei liegt der Schwerpunkt auf klinisch nachvollziehbaren Merkmalen und einer transparenten Erklärbarkeit der Modelle. Die Leistungsfähigkeit wird sowohl insgesamt als auch differenziert in Subgruppen (z. B. nach Alter, Geschlecht und BMI-Kategorien) bewertet. Zudem werden potenzielle Bias- und Fairness-Aspekte systematisch untersucht und die Limitationen der Analysen klar dokumentiert.
 
 **Methoden:**  
-Geplant sind folgende Methoden:  
+Geplant sind folgende Methoden:
 • Explorative Datenanalyse (EDA) mit medizinischem Fokus
-• Feature Engineering (BMI-Kategorien, Lifestyle-Score)
-• Multiklassen-Klassifikation: Logistische Regression, Random Forest
-• Evaluation: ROC-AUC (One-vs-Rest), PR-AUC je Klasse, Macro-/Weighted-F1
-• Subgruppen-/Bias-Analyse (z. B. Alter, Geschlecht)
+• Feature Engineering (z. B. BMI-Kategorien, aggregierte Risikoscores)
+• Binäre Klassifikation: Logistische Regression, Random Forest
+• Evaluation: ROC-AUC, Precision-Recall-AUC, F1 (macro/weighted), Balanced Accuracy
+• Subgruppen-/Bias-Analyse (z. B. Altersgruppen, Geschlecht, BMI-Kategorien)
 
 ## 🎯 Key Findings
 
@@ -52,9 +46,9 @@ Geplant sind folgende Methoden:
 • Python 3.10+
 
 **Libraries & Frameworks:**  
-• **Data Processing**: pandas, numpy  
-• **Visualisierung**: matplotlib, seaborn  
-• **Machine Learning**: scikit-learn
+• Data Processing: pandas, numpy  
+• Visualisierung: matplotlib, seaborn  
+• Machine Learning: scikit-learn
 
 **Tools:**  
 • Jupyter Notebook / JupyterLab  
@@ -65,36 +59,35 @@ Geplant sind folgende Methoden:
 ## 📊 Daten
 
 **Datenquelle:**  
-Kaggle – Diabetes Health Indicators Dataset (Alex Teboul), BRFSS 2015.
-Verwendete Datei: diabetes_012_health_indicators_BRFSS2015.csv
-URL: https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset?select=diabetes_012_health_indicators_BRFSS2015.csv
+• Kaggle: Diabetes Health Indicators (Binary)  
+• Datei: diabetes_binary_health_indicators_BRFSS2015.csv  
+• Link: [Diabetes Health Indicators (Binary)](https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset/data?select=diabetes_binary_health_indicators_BRFSS2015.csv)  
 
 **Lizenz:**  
 Public Domain (CDC-Daten). Hinweise auf Kaggle/CDC beachten.
 
 **Datensatz-Größe:**  
-• **254.000 Beobachtungen** (BRFSS-Stichprobe)
-• **21 Features**, 1 Zielvariable
-• Zielvariable: Diabetes_012 mit drei Ausprägungen (0/1/2)
+• **254.000 Beobachtungen** (BRFSS-Stichprobe)  
+• **21 Features**, 1 Zielvariable  
+• Binärer Zielstatus (0/1)
 
 **Wichtige Features:**  
-• Demografisch: Alter (kategorisiert), Geschlecht, BMI
-• Gesundheitsstatus/Komorbiditäten: Allgemeiner Gesundheitszustand, Hypertonie-/Cholesterin-Indikatoren, Depression, Arthritis, Krebs
-• Lifestyle: Rauchen, Alkoholkonsum, körperliche Aktivität
-• Zielvariable: Diabetes_012 (0 = kein Diabetes, 1 = Prädiabetes, 2 = Diabetes)
+Auszug:  
+• Demografisch: Age (kategorisiert), Sex, Education, Income, BMI  
+• Gesundheitsstatus/Komorbiditäten: GenHlth, MentHlth, PhysHlth, DiffWalk, HighBP, HighChol, HeartDiseaseorAttack, Stroke  
+• Lifestyle/Versorgung: Smoker, PhysActivity, Fruits, Veggies, HvyAlcoholConsump, AnyHealthcare, NoDocbcCost, CholCheck  
 
 **Datenqualität:**  
-• Offizielle CDC-Erhebung (standardisierte Telefonumfrage)
-• In diesem Kaggle-Release i. d. R. bereinigt; fehlende Werte sind selten bzw. bereits behandelt
+• Offizielle CDC-Erhebung  
+• In diesem Kaggle-Release typischerweise bereinigt; fehlende Werte sind selten  
 • Details siehe Kaggle-Beschreibung und CDC-Codebooks
 
 ## 🤖 Methodik
 
 ### 🔬 Hypothesen
 
-• Alter, BMI und chronische Erkrankungen sind dominante Risikofaktoren; Lifestyle-Faktoren tragen substanziell zur Diskrimination zwischen 0/1/2 bei.
-• Logistische Regression (Multinomial) ist interpretierbar; Gradient Boosting erreicht häufig bessere Macro-F1/PR-AUC.
-• Kalibrierung pro Klasse ist entscheidend, insbesondere zur Trennung 0 vs. 1 (Prädiabetes).
+• Alter, BMI und kardiometabolische Komorbiditäten sind dominante Risikofaktoren; Lifestyle-Faktoren tragen substantiell zur Trennung 0 vs. 1 bei.  
+• Logistische Regression ist gut interpretierbar; Baumverfahren/Boosting erreichen häufig höhere F1-/ROC-AUC-Werte.
 
 ### Data Preprocessing
 <!-- Kurze Beschreibung deiner Datenbereinigung -->
