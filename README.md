@@ -67,7 +67,7 @@ Geplant sind folgende Methoden:
 Public Domain (CDC-Daten). Hinweise auf Kaggle/CDC beachten.
 
 **Datensatz-Größe:**  
-• **254.000 Beobachtungen** (BRFSS-Stichprobe)  
+• **253.680 Beobachtungen** (BRFSS-Stichprobe)  
 • **21 Features**, 1 Zielvariable  
 • Binärer Zielstatus (0/1)
 
