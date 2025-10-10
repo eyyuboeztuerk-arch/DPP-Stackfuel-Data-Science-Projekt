@@ -31,3 +31,55 @@ def load_raw_data(csv_path: str = 'data/raw/diabetes_binary_health_indicators_BR
     """
     df = pd.read_csv(csv_path)
     return df
+
+def create_preprocessing_pipeline():
+    """
+    Create preprocessing pipelines for different feature groups.
+    
+    This function defines and combines multiple preprocessing pipelines for:
+    - Continuous features: Median imputation + Robust scaling
+    - Ordinal features: Most frequent imputation + Standard scaling
+    - Binary health features: Most frequent imputation (no scaling)
+    - Demographic features: Most frequent imputation (no scaling)
+    
+    The pipelines are combined using ColumnTransformer to handle different
+    feature types appropriately.
+    
+    Returns:
+    --------
+    sklearn.compose.ColumnTransformer
+        A fitted ColumnTransformer object that can be used to preprocess the data.
+    """
+    binary_health = ['HighBP', 'HighChol', 'CholCheck', 'Smoker', 'Stroke', 
+                     'HeartDiseaseorAttack', 'PhysActivity', 'Fruits', 'Veggies',
+                     'HvyAlcoholConsump', 'AnyHealthcare', 'NoDocbcCost', 'DiffWalk']
+    ordinal = ['GenHlth', 'Age', 'Education', 'Income']
+    continuous = ['BMI', 'MentHlth', 'PhysHlth']
+    demographic = ['Sex', 'Age', 'Education', 'Income']
+
+    continuous_transformer = Pipeline([
+        ('imputer', SimpleImputer(strategy='median')),
+        ('scaler', RobustScaler())
+    ])
+
+    ordinal_transformer = Pipeline([
+        ('imputer', SimpleImputer(strategy='most_frequent')),
+        ('scaler', StandardScaler())
+    ])
+
+    binary_transformer = Pipeline([
+        ('imputer', SimpleImputer(strategy='most_frequent'))
+    ])
+
+    demographic_transformer = Pipeline([
+        ('imputer', SimpleImputer(strategy='most_frequent'))
+    ])
+
+    preprocessor = ColumnTransformer(transformers=[
+        ('cont', continuous_transformer, continuous),
+        ('ord', ordinal_transformer, ordinal),
+        ('bin', binary_transformer, binary_health),
+        ('demo', demographic_transformer, demographic)
+    ], remainder='drop')
+
+    return preprocessor
