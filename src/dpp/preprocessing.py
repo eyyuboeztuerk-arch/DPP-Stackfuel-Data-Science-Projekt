@@ -32,25 +32,25 @@ def load_raw_data(csv_path: str | None = None) -> pd.DataFrame:
     )
 
     if csv_path is None:
-        csv_path = default_path
+        csv_path = default_path # pyright: ignore[reportAssignmentType]
     else:
-        csv_path = Path(csv_path)
+        csv_path = Path(csv_path) # pyright: ignore[reportAssignmentType]
 
     # Expand and resolve path to an absolute path
-    csv_path = csv_path.expanduser()
+    csv_path = csv_path.expanduser() # pyright: ignore[reportAttributeAccessIssue, reportOptionalMemberAccess]
     try:
-        csv_path = csv_path.resolve(strict=False)
+        csv_path = csv_path.resolve(strict=False) # pyright: ignore[reportOptionalMemberAccess, reportAttributeAccessIssue]
     except Exception:
         # resolve(strict=False) is used to avoid raising if intermediate parts are missing;
         # we'll check existence below and raise a clearer FileNotFoundError.
         pass
 
-    if not csv_path.exists():
+    if not csv_path.exists(): # pyright: ignore[reportOptionalMemberAccess, reportAttributeAccessIssue]
         raise FileNotFoundError(f"CSV file not found at: {csv_path}\n"
                                 "Please verify the path or pass csv_path explicitly to get_preprocessed_data(csv_path).")
 
     # Read CSV into DataFrame
-    df = pd.read_csv(csv_path)
+    df = pd.read_csv(csv_path) # pyright: ignore[reportArgumentType]
     return df
 
 
@@ -82,27 +82,27 @@ def preprocess_data(df: pd.DataFrame) -> dict:
         raise KeyError(f"Target column '{target_col}' not found in dataframe. Available columns: {list(df.columns)}")
 
     # Separate target and predictors
-    y = df[target_col].copy()
-    X = df.drop(columns=[target_col]).copy()
+    target = df[target_col].copy()
+    features = df.drop(columns=[target_col]).copy()
 
     # Save original feature names (pre-transformation)
-    feature_names = list(X.columns)
+    feature_names = list(features.columns)
 
     # Simple numeric scaling (keeps as DataFrame to retain column names)
     scaler = StandardScaler()
-    X_scaled_array = scaler.fit_transform(X)
-    X_scaled = pd.DataFrame(X_scaled_array, columns=feature_names, index=X.index)
+    features_scaled_array = scaler.fit_transform(features)
+    features_scaled = pd.DataFrame(features_scaled_array, columns=feature_names, index=features.index)
 
     # Train-test split with stratification on the target
-    X_train, X_test, y_train, y_test = train_test_split(
-        X_scaled, y, test_size=0.2, random_state=42, stratify=y
+    features_train, features_test, target_train, target_test = train_test_split(
+        features_scaled, target, test_size=0.2, random_state=42, stratify=target
     )
 
     return {
-        'X_train': X_train,
-        'X_test': X_test,
-        'y_train': y_train,
-        'y_test': y_test,
+        'features_train': features_train,
+        'features_test': features_test,
+        'target_train': target_train,
+        'target_test': target_test,
         'feature_names': feature_names
     }
 
