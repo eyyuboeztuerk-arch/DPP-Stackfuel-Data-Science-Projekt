@@ -8,6 +8,7 @@ Robust preprocessing implementation:
 - builds ColumnTransformer with StandardScaler + OneHotEncoder
   (compatible with older/newer sklearn versions)
 - converts transformed arrays into DataFrames with correct column names
+- applies SMOTE to handle class imbalance
 - returns exactly the keys expected by 03_modeling.py:
   features_train, target_train, features_test, target_test, feature_names, preprocessor
 """
@@ -23,8 +24,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from scipy import sparse
 
+# Import SMOTE
+from imblearn.over_sampling import SMOTE
+
 import joblib
-from pathlib import Path
+from pathlib import Path  # noqa: F811
 
 import re
 
@@ -157,6 +161,12 @@ def preprocess_data(
     """
     Preprocess DataFrame and return train/test splits plus feature names and preprocessor.
     """
+    # Remove duplicates early to avoid data leakage and inflated sample size
+    initial_len = len(df)
+    df = df.drop_duplicates()
+    duplicates_removed = initial_len - len(df)
+    print(f"Duplicates removed: {duplicates_removed:,}")
+
     if target_col not in df.columns:
         raise KeyError(f"Target column '{target_col}' not found. Available columns: {list(df.columns)}")
 
@@ -226,9 +236,15 @@ def preprocess_data(
     # Clean feature names to remove ".0" suffixes
     feature_names = clean_feature_names(feature_names)
 
+    # Apply SMOTE to handle class imbalance
+    print("Applying SMOTE to training data...")
+    smote = SMOTE(random_state=random_state)
+    features_train_resampled, target_train_resampled = smote.fit_resample(features_train_trans, target_train) # pyright: ignore[reportAssignmentType]
+    print(f"Training set size after SMOTE: {len(features_train_resampled):,}")
+
     # Convert transformed arrays to DataFrames so .columns exist downstream
-    features_train_df = pd.DataFrame(features_train_trans, columns=feature_names, index=features_train_raw.index)
-    features_test_df = pd.DataFrame(features_test_trans, columns=feature_names, index=features_test_raw.index)
+    features_train_df = pd.DataFrame(features_train_resampled, columns=feature_names, index=None)
+    features_test_df = pd.DataFrame(features_test_trans, columns=feature_names, index=None)
 
     # Save preprocessor and feature names for downstream use
     models_dir = Path(__file__).resolve().parents[2] / "models"  # project_root/models
@@ -243,7 +259,7 @@ def preprocess_data(
     return {
         "features_train": features_train_df,
         "features_test": features_test_df,
-        "target_train": target_train,
+        "target_train": target_train_resampled,
         "target_test": target_test,
         "feature_names": feature_names,
         "preprocessor": preprocessor,
