@@ -23,6 +23,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from scipy import sparse
 
+import joblib
+from pathlib import Path
+
+import re
+
 # -------------------------
 # Helper: OneHotEncoder compatibility
 # -------------------------
@@ -111,6 +116,18 @@ def _get_feature_names_from_column_transformer(ct: ColumnTransformer, input_feat
             feature_names.extend(list(cols))
 
     return feature_names
+
+
+# -------------------------
+# Helper: clean OneHot encoded feature names
+# -------------------------
+def clean_feature_names(names):
+    """
+    Clean up OneHot encoded feature names by removing trailing ".0".
+    Example: 'HighBP_1.0' -> 'HighBP_1'
+    """
+    cleaned = [re.sub(r'_(\d+)\.0$', r'_\1', str(n)) for n in names]
+    return cleaned
 
 # -------------------------
 # Core functions
@@ -206,9 +223,22 @@ def preprocess_data(
         )
         feature_names = [f"feature_{i}" for i in range(features_train_trans.shape[1])]
 
+    # Clean feature names to remove ".0" suffixes
+    feature_names = clean_feature_names(feature_names)
+
     # Convert transformed arrays to DataFrames so .columns exist downstream
     features_train_df = pd.DataFrame(features_train_trans, columns=feature_names, index=features_train_raw.index)
     features_test_df = pd.DataFrame(features_test_trans, columns=feature_names, index=features_test_raw.index)
+
+    # Save preprocessor and feature names for downstream use
+    models_dir = Path(__file__).resolve().parents[2] / "models"  # project_root/models
+    models_dir.mkdir(parents=True, exist_ok=True)
+
+    joblib.dump(preprocessor, models_dir / "preprocessor.pkl")
+    joblib.dump(feature_names, models_dir / "feature_names.pkl")
+
+    print(f"Saved preprocessor to {models_dir / 'preprocessor.pkl'}")
+    print(f"Saved feature names to {models_dir / 'feature_names.pkl'}")
 
     return {
         "features_train": features_train_df,
