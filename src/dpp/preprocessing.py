@@ -246,15 +246,23 @@ def preprocess_data(
     features_train_df = pd.DataFrame(features_train_resampled, columns=feature_names, index=None)
     features_test_df = pd.DataFrame(features_test_trans, columns=feature_names, index=None)
 
-    # Save preprocessor and feature names for downstream use
+    # Save processed data for downstream use
     models_dir = Path(__file__).resolve().parents[2] / "models"  # project_root/models
     models_dir.mkdir(parents=True, exist_ok=True)
 
-    joblib.dump(preprocessor, models_dir / "preprocessor.pkl")
+    joblib.dump(features_train_df, models_dir / "features_train.pkl")
+    joblib.dump(target_train_resampled, models_dir / "target_train.pkl")
+    joblib.dump(features_test_df, models_dir / "features_test.pkl")
+    joblib.dump(target_test, models_dir / "target_test.pkl")
     joblib.dump(feature_names, models_dir / "feature_names.pkl")
+    joblib.dump(preprocessor, models_dir / "preprocessor.pkl")
 
+    print(f"Saved features_train to {models_dir / 'features_train.pkl'}")
+    print(f"Saved target_train to {models_dir / 'target_train.pkl'}")
+    print(f"Saved features_test to {models_dir / 'features_test.pkl'}")
+    print(f"Saved target_test to {models_dir / 'target_test.pkl'}")
+    print(f"Saved feature_names to {models_dir / 'feature_names.pkl'}")
     print(f"Saved preprocessor to {models_dir / 'preprocessor.pkl'}")
-    print(f"Saved feature names to {models_dir / 'feature_names.pkl'}")
 
     return {
         "features_train": features_train_df,
