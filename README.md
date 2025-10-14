@@ -1,112 +1,165 @@
-# Portfolio Projekt: Diabetes Health Indicators: Binäre Klassifikation des Diabetesrisikos
+# Portfolio Project: Diabetes Health Indicators — Binary Classification of Diabetes Risk
 
-Dieses Projekt befasst sich mit der Vorhersage des Diabetes-Status anhand von Gesundheits-, Lifestyle- und demografischen Merkmalen, mit Fokus auf klinische Interpretierbarkeit, valide Evaluation und Bias-Analyse.
+This project focuses on predicting diabetes status based on health, lifestyle, and demographic features, emphasizing clinical interpretability, valid evaluation, and bias analysis.
 
 
-## 📊 Projektübersicht
+## 📊 Project Overview
 
-**Problemstellung:**  
-Diabetes mellitus ist eine der häufigsten chronischen Erkrankungen weltweit. Eine frühzeitige Risikoidentifikation (kein Diabetes vs. Prädiabetes/Diabetes) ermöglicht gezielte Prävention und Versorgung. Dieses Projekt nutzt den Kaggle-Datensatz „Diabetes Health Indicators (Binary)“ (BRFSS 2015), um prädiktive Modelle für den binären Diabetes-Status zu entwickeln.
+**Problem Statement:**  
+Diabetes mellitus is one of the most common chronic diseases worldwide. Early risk identification (no diabetes vs. prediabetes/diabetes) enables targeted prevention and care. This project uses the Kaggle dataset “Diabetes Health Indicators (Binary)” (BRFSS 2015) to develop predictive models for binary diabetes status.
 
-**Ziel:**  
-Dieses Projekt entwickelt ein binäres Klassifikationsmodell zur Vorhersage des Diabetesrisikos. Dabei liegt der Schwerpunkt auf klinisch nachvollziehbaren Merkmalen und einer transparenten Erklärbarkeit der Modelle. Die Leistungsfähigkeit wird sowohl insgesamt als auch differenziert in Subgruppen (z. B. nach Alter, Geschlecht und BMI-Kategorien) bewertet. Zudem werden potenzielle Bias- und Fairness-Aspekte systematisch untersucht und die Limitationen der Analysen klar dokumentiert.
+**Objective:**  
+Develop a binary classification model to predict diabetes risk, focusing on clinically interpretable features and transparent model explainability. Performance is evaluated overall and stratified by subgroups (e.g., age, sex, BMI categories). Potential bias and fairness aspects are systematically analyzed, and limitations are clearly documented.
 
-**Methoden:**  
-Geplant sind folgende Methoden:
-• Explorative Datenanalyse (EDA) mit medizinischem Fokus
-• Feature Engineering (z. B. BMI-Kategorien, aggregierte Risikoscores)
-• Binäre Klassifikation: Logistische Regression, Random Forest
-• Evaluation: ROC-AUC, Precision-Recall-AUC, F1 (macro/weighted), Balanced Accuracy
-• Subgruppen-/Bias-Analyse (z. B. Altersgruppen, Geschlecht, BMI-Kategorien)
+**Methods:**
+- Exploratory Data Analysis (EDA) with medical focus  
+- Feature engineering (e.g., BMI categories, aggregated risk scores)  
+- Binary classification: Logistic Regression, Random Forest, XGBoost, SVM, Neural Networks, etc.  
+- Evaluation: ROC-AUC, Precision-Recall AUC, F1-score, Balanced Accuracy  
+- Subgroup and bias analysis (age groups, sex, BMI categories)  
+- Decision Curve Analysis (DCA) for clinical utility assessment  
+
+**Limitation:**
+- The binary target variable combines both prediabetes and diabetes cases into a single positive class (class 1).  
+- This limits the granularity of risk stratification and clinical interpretation.  
+
+**Future Work:**  
+Plan to develop a comparative portfolio project using the related Kaggle dataset with a three-class target variable:  
+- Class 0: No diabetes  
+- Class 1: Prediabetes  
+- Class 2: Diabetes
+
+This will enable multi-class classification and more nuanced risk prediction.
 
 ## 🎯 Key Findings
 
 <!-- Hier deine wichtigsten Erkenntnisse in 3-5 Bullet Points -->
-- 📈 **Erkenntnis 1:** Kurze Beschreibung
-- 🔍 **Erkenntnis 2:** Kurze Beschreibung  
-- 💡 **Erkenntnis 3:** Kurze Beschreibung
+- 📈 **Finding 1:** XGBoost achieved the best overall performance with an F1-score of approximately 0.47 and ROC-AUC around 0.82.
+- 🔍 **Finding 2:** SVM and Logistic Regression showed high sensitivity (recall ~0.76), important for detecting diabetes cases.
+- 💡 **Finding 3:** Optimized thresholds (e.g., 0.26 for XGBoost) significantly improve diabetes detection compared to the default 0.5 threshold.
+- ⚖️ **Finding 4:** Decision Curve Analysis confirms the clinical benefit of the models compared to “treat all” or “treat none” strategies.
+- 📊 **Finding 5:** Hypertension (by far), BMI, age, and cardiovascular disease are one of the most important predictors of diabetes risk.
 
 ## 📁 Repository Struktur
 
+```  
+├── data/  
+│   ├── raw/                    # Original data  
+│   └── processed/              # Cleaned data  
+├── notebooks/                  # Jupyter notebooks  
+│   ├── 01_exploration.ipynb    # Data exploration  
+│   ├── 02_preprocessing.ipynb  # Data preprocessing     
+│   ├── 03_modeling.ipynb       # Modeling  
+│   └── 04_results.ipynb        # Results visualization  
+├── src/dpp                     # Python modules  
+├── models/                     # Saved models and results (.pkl)  
+├── test/                       # Unit tests  
+├── pyproject.toml              # Project configuration  
+└── docs/                       # Additional documentation
 ```
-├── data/
-│   ├── raw/                    # Originaldaten
-│   └── processed/              # Bereinigte Daten
-├── notebooks/                  # Jupyter Notebooks
-│   └── 01_exploration.ipynb    # Datenexploration
-├── src/dpp                     # Python Module
-├── test/                       # Unit Tests
-├── pyproject.toml              # Projektkonfiguration
-└── docs/                       # Zusätzliche Dokumentation
-```
 
-## 🔧 Verwendete Technologien
+## 🔧 Technologies Used
 
-**Programmiersprachen:**  
-• Python 3.10+
+**Programming Languages:**
+- Python 3.10+  
 
-**Libraries & Frameworks:**  
-• Data Processing: pandas, numpy  
-• Visualisierung: matplotlib, seaborn  
-• Machine Learning: scikit-learn
+**Libraries & Frameworks:**
+- Data Processing: pandas, numpy  
+- Visualization: matplotlib, seaborn  
+- Machine Learning: scikit-learn, xgboost  
 
-**Tools:**  
-• Jupyter Notebook / JupyterLab  
-• Git & GitHub (Versionskontrolle)  
-• UV (Python Paketmanager)  
-• Visual Studio Code
+**Tools:**
+- Jupyter Notebook / JupyterLab  
+- Git & GitHub (version control)  
+- UV (Python package manager)  
+- Visual Studio Code
 
 ## 📊 Daten
 
-**Datenquelle:**  
-• Kaggle: Diabetes Health Indicators (Binary)  
-• Datei: diabetes_binary_health_indicators_BRFSS2015.csv  
-• Link: [Diabetes Health Indicators (Binary)](https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset/data?select=diabetes_binary_health_indicators_BRFSS2015.csv)  
+**Data Source:**  
+Kaggle: Diabetes Health Indicators (Binary)  
+File: diabetes_binary_health_indicators_BRFSS2015.csv  
+Link: [Diabetes Health Indicators (Binary)](https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset/data?select=diabetes_binary_health_indicators_BRFSS2015.csv)  
 
-**Lizenz:**  
-Public Domain (CDC-Daten). Hinweise auf Kaggle/CDC beachten.
+**License:**  
+Public Domain (CDC data). See Kaggle/CDC for details.
 
-**Datensatz-Größe:**  
-• **253.680 Beobachtungen** (BRFSS-Stichprobe)  
-• **21 Features**, 1 Zielvariable  
-• Binärer Zielstatus (0/1)
+**Dataset Size:**
+- 253,680 observations (BRFSS-Stichprobe)
+- 21 features, 1 binary target variable  
 
-**Wichtige Features:**  
-Auszug:  
-• Demografisch: Age (kategorisiert), Sex, Education, Income, BMI  
-• Gesundheitsstatus/Komorbiditäten: GenHlth, MentHlth, PhysHlth, DiffWalk, HighBP, HighChol, HeartDiseaseorAttack, Stroke  
-• Lifestyle/Versorgung: Smoker, PhysActivity, Fruits, Veggies, HvyAlcoholConsump, AnyHealthcare, NoDocbcCost, CholCheck  
+**Key Features:**
+- Demographics: Age (categorized), Sex, Education, Income, BMI
+- Health status/comorbidities: GenHlth, MentHlth, PhysHlth, DiffWalk, HighBP, HighChol, HeartDiseaseorAttack, Stroke
+- Lifestyle/access: Smoker, PhysActivity, Fruits, Veggies, HvyAlcoholConsump, AnyHealthcare, NoDocbcCost, CholCheck  
 
-**Datenqualität:**  
-• Offizielle CDC-Erhebung  
-• In diesem Kaggle-Release typischerweise bereinigt; fehlende Werte sind selten  
-• Details siehe Kaggle-Beschreibung und CDC-Codebooks
+**Data Quality:**
+- Official CDC survey data
+- Cleaned dataset with rare missing values
+- See Kaggle description and CDC codebooks for details  
 
-## 🤖 Methodik
+## 🤖 Methodology
 
-### 🔬 Hypothesen
+### 🔬 Hypotheses
 
-• Alter, BMI und kardiometabolische Komorbiditäten sind dominante Risikofaktoren; Lifestyle-Faktoren tragen substantiell zur Trennung 0 vs. 1 bei.  
-• Logistische Regression ist gut interpretierbar; Baumverfahren/Boosting erreichen häufig höhere F1-/ROC-AUC-Werte.
+- Age, BMI, and cardiometabolic comorbidities are dominant risk factors; lifestyle factors contribute substantially to class separation.
+- Logistic regression offers interpretability; tree-based and boosting methods often achieve higher F1 and ROC-AUC.  
 
 ### Data Preprocessing
 <!-- Kurze Beschreibung deiner Datenbereinigung -->
+- Cleaning and encoding missing values
+- Feature engineering (BMI categories, age groups)
+- Handling class imbalance (SMOTE)  
 
-### Modeling Approach  
+### Modeling Approach
 <!-- Welche Modelle hast du getestet? -->
+- Models: Logistic Regression, Random Forest, XGBoost, SVM, Neural Networks
+- Hyperparameter tuning with RandomizedSearchCV
+- Threshold optimization to maximize F1-score  
 
 ### Evaluation
 <!-- Wie hast du die Ergebnisse bewertet? -->
+- Metrics: ROC-AUC, Precision, Recall, F1-score, Accuracy, Cross-validation
+- Decision Curve Analysis (DCA) for clinical utility
+- Subgroup analyses by age, sex, BMI  
 
-## 📈 Ergebnisse
+## 📈 Results  
 
 **Model Performance:**
 <!-- Deine besten Metriken (Accuracy, RMSE, etc.) -->
+- XGBoost: F1 ≈ 0.47, ROC-AUC ≈ 0.82, optimal threshold ≈ 0.26
+- SVM & Logistic Regression: high recall (~0.76), important for diabetes detection
+- Neural Network: F1 ≈ 0.42, balanced precision and recall  
 
-**Wichtigste Visualisierungen:**
+**Key Visualizations:**
 <!-- Verweis auf Key-Plots in deinen Notebooks -->
+- ROC and Precision-Recall curves for all models
+- Feature importance (XGBoost, Random Forest)
+- Decision Curve Analysis (DCA)
+- Confusion matrix at optimal threshold  
 
-## 🚀 Reproduzierbarkeit
+## Confusion Matrix and Classification Report Explanation
+
+The confusion matrix for the best model (XGBoost, threshold 0.261) on the test set is:
+
+|                      | Predicted Negative (0) | Predicted Positive (1) |
+|----------------------|------------------------|------------------------|
+| Actual Negative (0)   | 31,202 (True Negative) | 7,674 (False Positive) |
+| Actual Positive (1)   | 2,510 (False Negative) | 4,509 (True Positive)  |
+
+- **True Positives (TP):** 4,509 diabetes cases correctly identified.  
+- **True Negatives (TN):** 31,202 non-diabetes cases correctly identified.  
+- **False Positives (FP):** 7,674 non-diabetes cases incorrectly predicted as diabetes.  
+- **False Negatives (FN):** 2,510 diabetes cases missed by the model.
+
+### Performance metrics derived:
+
+- **Precision (class 1):** 0.37 — Of all predicted diabetes cases, 37% are correct.  
+- **Recall (Sensitivity):** 0.64 — The model detects 64% of all actual diabetes cases.  
+- **F1-score (class 1):** 0.47 — Harmonic mean of precision and recall.  
+- **Accuracy:** 0.78 — Overall correct predictions.
+
+## 🚀 Reproducibility
 
 ### Setup
 ```bash
@@ -118,7 +171,7 @@ cd DPP-Stackfuel-Data-Science-Projekt
 uv sync
 ```
 
-### Ausführung
+### Execution
 ```bash
 # Notebooks in dieser Reihenfolge ausführen:
 # 1. notebooks/01_exploration.ipynb
@@ -128,28 +181,29 @@ uv sync
 ```
 
 
-## 🎓 Über dieses Projekt
+## 🎓 About this Project
 
-**Kontext:**  
-Dieses Projekt entsteht im Rahmen des **StackFuel Portfolio Projekt Kurses**. Mit diesem Projekt demonstriere ich den Übergang meiner Kenntnisse als **Biostatistiker in klinischen Studien** zu **angewandtem Data Science (im Gesundheitswesen)**.
+**Context:**  
+This project was developed as part of the **StackFuel Portfolio Project Course**. It demonstrates my transition from a **biostatistician in clinical trials** to an applied **data scientist (in healthcare)**.
 
-**Zeitraum:**  
-29.09.2025 - 17.10.2025
+**Period:**  
+September 29, 2025 - October 17, 2025
 
-**Autor:**  
+**Author:**  
 Eyyub Öztürk  
-  *Biostatistiker (M.Sc.) mit mehrjähriger Erfahrung in klinischen Studien, nun mit zusätzlicher Spezialisierung auf Data Science*
+*Biostatistician (M.Sc.) with several years of experience in clinical trials, now specialized in data science.*
 
-## 📞 Kontakt
+## 📞 Contact
 
 **GitHub:** [@DeinUsername](https://github.com/DeinUsername)  
 **E-Mail:** deine.email@beispiel.de  
 **LinkedIn:** [Dein Profil](https://linkedin.com/in/dein-profil)
 
-## 🙏 Danksagungen
+## 🙏 Acknowledgments  
 
 <!-- Hier kannst du Personen oder Ressourcen erwähnen, die dir geholfen haben -->
+Thanks to StackFuel, the community, and everyone who supported me during this project.
 
 ---
 
-**⭐ Wenn dir dieses Projekt gefällt, gib gerne einen Star!**
+**⭐ If you like this project, please give it a star!**
