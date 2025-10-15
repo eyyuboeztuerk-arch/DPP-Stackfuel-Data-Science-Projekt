@@ -140,24 +140,18 @@ Public Domain (CDC data). See Kaggle/CDC for details.
 
 ## Confusion Matrix and Classification Report Explanation
 
-The confusion matrix for the best model (XGBoost, threshold 0.261) on the test set is:
+The confusion matrix for the best model, XGBoost with a threshold of 0.261, on the test set is as follows:
 
 |                      | Predicted Negative (0) | Predicted Positive (1) |
-|----------------------|------------------------|------------------------|
-| Actual Negative (0)   | 31,202 (True Negative) | 7,674 (False Positive) |
-| Actual Positive (1)   | 2,510 (False Negative) | 4,509 (True Positive)  |
+|----------------------|-----------------------|-----------------------|
+| **Actual Negative (0)** | 31,202 (True Negative) | 7,674 (False Positive) |
+| **Actual Positive (1)** | 2,510 (False Negative) | 4,509 (True Positive)  |
 
-- **True Positives (TP):** 4,509 diabetes cases correctly identified.  
-- **True Negatives (TN):** 31,202 non-diabetes cases correctly identified.  
-- **False Positives (FP):** 7,674 non-diabetes cases incorrectly predicted as diabetes.  
-- **False Negatives (FN):** 2,510 diabetes cases missed by the model.
+The model correctly identified 4,509 diabetes cases and 31,202 non-diabetes cases. It incorrectly predicted 7,674 non-diabetes cases as diabetes and missed 2,510 diabetes cases.
 
-### Performance metrics derived:
+The precision for diabetes cases is 0.37, meaning that 37% of predicted diabetes cases are correct. The recall (sensitivity) is 0.64, indicating that the model detects 64% of all actual diabetes cases. The F1-score for diabetes is 0.47, representing the harmonic mean of precision and recall. The overall accuracy is 0.78.
 
-- **Precision (class 1):** 0.37 — Of all predicted diabetes cases, 37% are correct.  
-- **Recall (Sensitivity):** 0.64 — The model detects 64% of all actual diabetes cases.  
-- **F1-score (class 1):** 0.47 — Harmonic mean of precision and recall.  
-- **Accuracy:** 0.78 — Overall correct predictions.
+This performance reflects a balance between detecting diabetes cases and limiting false alarms. The number of false negatives is critical in clinical settings, as missed diabetes cases can have serious consequences. The chosen threshold optimizes this balance to maximize the F1-score.
 
 ## 🚀 Reproducibility
 
