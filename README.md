@@ -38,7 +38,7 @@ This will enable multi-class classification and more nuanced risk prediction.
 - 🔍 **Finding 2:** SVM and Logistic Regression showed high sensitivity (recall ~0.76), important for detecting diabetes cases.
 - 💡 **Finding 3:** Optimized thresholds (e.g., 0.26 for XGBoost) significantly improve diabetes detection compared to the default 0.5 threshold.
 - ⚖️ **Finding 4:** Decision Curve Analysis confirms the clinical benefit of the models compared to “treat all” or “treat none” strategies.
-- 📊 **Finding 5:** Hypertension (by far), BMI, age, and cardiovascular disease are one of the most important predictors of diabetes risk.
+- 📊 **Finding 5:** BMI, age, hypertension, and cardiovascular disease are the most important predictors of diabetes risk.
 
 ## 📁 Repository Struktur
 
@@ -74,7 +74,7 @@ This will enable multi-class classification and more nuanced risk prediction.
 - UV (Python package manager)  
 - Visual Studio Code
 
-## 📊 Daten
+## 📊 Data
 
 **Data Source:**  
 Kaggle: Diabetes Health Indicators (Binary)  
@@ -85,7 +85,7 @@ Link: [Diabetes Health Indicators (Binary)](https://www.kaggle.com/datasets/alex
 Public Domain (CDC data). See Kaggle/CDC for details.
 
 **Dataset Size:**
-- 253,680 observations (BRFSS-Stichprobe)
+- 253,680 observations (BRFSS sample)
 - 21 features, 1 binary target variable  
 
 **Key Features:**
