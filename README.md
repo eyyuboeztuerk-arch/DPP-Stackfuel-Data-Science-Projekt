@@ -52,7 +52,6 @@ This will enable multi-class classification and more nuanced risk prediction.
 │   ├── 03_modeling.ipynb       # Modeling  
 │   └── 04_results.ipynb        # Results visualization  
 ├── src/dpp                     # Python modules  
-├── models/                     # Saved models and results (.pkl)  
 ├── test/                       # Unit tests  
 ├── pyproject.toml              # Project configuration  
 └── docs/                       # Additional documentation
@@ -189,14 +188,15 @@ Eyyub Öztürk
 
 ## 📞 Contact
 
-**GitHub:** [@DeinUsername](https://github.com/DeinUsername)  
-**E-Mail:** deine.email@beispiel.de  
-**LinkedIn:** [Dein Profil](https://linkedin.com/in/dein-profil)
+**GitHub:** [@eyyuboeztuerk-arch](https://github.com/eyyuboeztuerk-arch)  
+**E-Mail:** eyyub.oeztuerk@outlook.de  
+**LinkedIn:** [eyyub-öztürk](www.linkedin.com/in/eyyub-öztürk)
 
 ## 🙏 Acknowledgments  
 
 <!-- Hier kannst du Personen oder Ressourcen erwähnen, die dir geholfen haben -->
-Thanks to StackFuel, the community, and everyone who supported me during this project.
+Thanks to StackFuel, the community, everyone who supported me during this project, and the Kaggle users who provided the datasets available here:  
+[Diabetes Health Indicators Dataset on Kaggle](https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset)
 
 ---
 
